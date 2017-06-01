@@ -25,6 +25,7 @@
             style="@style/ButtonsStyle"
             android:text="@string/static_comparsion"
             android:id="@+id/staticComparsionButtonId"
+            android:onClick="openStaticComparsionActivity"
             />
         <Button
             style="@style/ButtonsStyle"
