@@ -1,11 +1,11 @@
 package com.hoymm.root.sortingcomparer;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,11 +14,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openStaticComparsionActivity(View view) {
-        startActivity(StaticComparsionActivity.getNewIntent(this));
-        closeCurrentActivityScreen();
+        startActivity(getStaticComparsionIntent());
     }
 
-    private void closeCurrentActivityScreen() {
-        finish();
+    private Intent getStaticComparsionIntent(){
+        return new Intent(this, StaticComparsionActivity.class);
     }
 }
