@@ -20,16 +20,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Positive"
+                android:id="@+id/positiveCaseCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Random"
+                android:id="@+id/randomCaseCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Negative"
+                android:id="@+id/negativeCaseCB_ID"
                 />
         </LinearLayout>
 
@@ -48,21 +51,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Selection"
+                android:id="@+id/selectionSortCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Insertion"
+                android:id="@+id/insertionSortCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Merge"
+                android:id="@+id/mergeSortCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quick"
+                android:id="@+id/quickSortCB_ID"
                 />
         </LinearLayout>
 
@@ -79,7 +86,9 @@
                 />
             <RadioGroup
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/arraySizeRG_ID"
+                >
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
