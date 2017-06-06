@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/appBackground"
-    tools:context="com.hoymm.root.sortingcomparer.MainActivity">
+    tools:context="com.hoymm.root.sortingcomparer.Activities.MainActivity">
 
     <include
         layout="@layout/header"

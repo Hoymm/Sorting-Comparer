@@ -1,9 +1,12 @@
-package com.hoymm.root.sortingcomparer;
+package com.hoymm.root.sortingcomparer.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.hoymm.root.sortingcomparer.R;
 
 public class MainActivity extends Activity {
 

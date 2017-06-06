@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hoymm.root.sortingcomparer.StaticComparsionActivity">
+    tools:context="com.hoymm.root.sortingcomparer.Activities.StaticComparsionActivity">
     
     <com.github.mikephil.charting.charts.BarChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/optionsPanelID"
+        android:id="@+id/staticComparsionBarChartID"
         />
 
     <include

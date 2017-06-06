@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hoymm.root.sortingcomparer.DynamicComparsionActivity">
+    tools:context="com.hoymm.root.sortingcomparer.Activities.DynamicComparsionActivity">
 
     <com.github.mikephil.charting.charts.BarChart
         android:layout_width="match_parent"

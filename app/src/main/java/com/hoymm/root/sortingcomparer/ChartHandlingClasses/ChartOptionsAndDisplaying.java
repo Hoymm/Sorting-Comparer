@@ -1,11 +1,13 @@
-package com.hoymm.root.sortingcomparer;
+package com.hoymm.root.sortingcomparer.ChartHandlingClasses;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.IdRes;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
+
+import com.hoymm.root.sortingcomparer.R;
 
 /**
  * Created by root on 05.06.17.
@@ -16,11 +18,11 @@ public class ChartOptionsAndDisplaying {
     private CheckBox positiveSortedCase, negativeSortedCase, randomSortedCase;
     private CheckBox selectionSort, insertionSort, mergeSort, quickSort;
     private RadioGroup arraySizeRadioGroup;
-    private Activity activity;
+    private Context context;
 
 
-    public ChartOptionsAndDisplaying(Activity activity) {
-        this.activity = activity;
+    public ChartOptionsAndDisplaying(Context context) {
+        this.context = context;
         initChartDisplayingClass();
         linkLocalObjectsWithXML();
         setFunctinalityForLocalObjectsConnectedToXML();
@@ -28,20 +30,20 @@ public class ChartOptionsAndDisplaying {
     }
 
     private void initChartDisplayingClass() {
-        chartDisplaying = new ChartDisplaying(activity);
+        chartDisplaying = new ChartDisplaying(context);
     }
 
     private void linkLocalObjectsWithXML() {
-        positiveSortedCase = (CheckBox) activity.findViewById(R.id.positiveCaseCB_ID);
-        negativeSortedCase = (CheckBox) activity.findViewById(R.id.negativeCaseCB_ID);
-        randomSortedCase = (CheckBox) activity.findViewById(R.id.randomCaseCB_ID);
+        positiveSortedCase = (CheckBox) ((Activity)context).findViewById(R.id.positiveCaseCB_ID);
+        negativeSortedCase = (CheckBox) ((Activity)context).findViewById(R.id.negativeCaseCB_ID);
+        randomSortedCase = (CheckBox) ((Activity)context).findViewById(R.id.randomCaseCB_ID);
 
-        selectionSort = (CheckBox) activity.findViewById(R.id.selectionSortCB_ID);
-        insertionSort = (CheckBox) activity.findViewById(R.id.insertionSortCB_ID);
-        mergeSort = (CheckBox) activity.findViewById(R.id.mergeSortCB_ID);
-        quickSort = (CheckBox) activity.findViewById(R.id.quickSortCB_ID);
+        selectionSort = (CheckBox) ((Activity)context).findViewById(R.id.selectionSortCB_ID);
+        insertionSort = (CheckBox) ((Activity)context).findViewById(R.id.insertionSortCB_ID);
+        mergeSort = (CheckBox) ((Activity)context).findViewById(R.id.mergeSortCB_ID);
+        quickSort = (CheckBox) ((Activity)context).findViewById(R.id.quickSortCB_ID);
 
-        arraySizeRadioGroup = (RadioGroup) activity.findViewById(R.id.arraySizeRG_ID);
+        arraySizeRadioGroup = (RadioGroup) ((Activity)context).findViewById(R.id.arraySizeRG_ID);
     }
 
     private void setFunctinalityForLocalObjectsConnectedToXML() {

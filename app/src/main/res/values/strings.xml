@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sorting Comparer</string>
+    <string name="app_name">Sorting Comparer by Damian Muca</string>
     <string name="static_comparsion">Static Comparsion</string>
     <string name="dynamic_comparsion">Dynamic Comparsion</string>
     <string name="history">History</string>

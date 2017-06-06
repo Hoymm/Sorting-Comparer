@@ -1,4 +1,4 @@
-package com.hoymm.root.sortingcomparer;
+package com.hoymm.root.sortingcomparer.ChartHandlingClasses;
 
 /**
  * Created by root on 05.06.17.

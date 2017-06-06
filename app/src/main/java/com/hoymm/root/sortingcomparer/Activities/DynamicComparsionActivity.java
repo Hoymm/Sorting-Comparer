@@ -1,7 +1,9 @@
-package com.hoymm.root.sortingcomparer;
+package com.hoymm.root.sortingcomparer.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.hoymm.root.sortingcomparer.R;
 
 public class DynamicComparsionActivity extends AppCompatActivity {
 
