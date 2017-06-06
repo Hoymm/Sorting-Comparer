@@ -1,6 +1,7 @@
 package com.hoymm.root.sortingcomparer;
 
 import android.app.Activity;
+import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -145,10 +146,10 @@ public class ChartOptionsAndDisplaying {
 
 
     private void setArraySizeToDisplayRadioButtonAction(){
-        arraySizeRadioGroup.setOnClickListener(new View.OnClickListener() {
+        arraySizeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                switch(v.getId()){
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch(checkedId){
                     case R.id.smallArrayRB_ID:
                         chartDisplaying.showChartForSmallArraySize();
                         break;
@@ -161,5 +162,6 @@ public class ChartOptionsAndDisplaying {
                 }
             }
         });
+
     }
 }

@@ -53,18 +53,16 @@ public class ChartDisplaying {
     public void hideSelectionSortOnChar(){};
     public void showInsertionSortOnChart(){}
     public void hideInsertionSortOnChar(){};
-    public void showMergeSortOnChart(){}
+    public void showMergeSortOnChart(){
+    }
     public void hideMergeSortOnChar(){};
     public void showQuickSortOnChart(){}
     public void hideQuickSortOnChar(){};
 
     public void showChartForSmallArraySize() {
-        Toast.makeText(activity, "SMALL", Toast.LENGTH_SHORT).show();
     }
     public void showChartForAverageArraySize() {
-        Toast.makeText(activity, "AVERAGE", Toast.LENGTH_SHORT).show();
     }
     public void showChartForBigArraySize() {
-        Toast.makeText(activity, "BIG", Toast.LENGTH_SHORT).show();
     }
 }
