@@ -1,6 +1,7 @@
 package com.hoymm.root.sortingcomparer;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 /**
  * Created by root on 05.06.17.
@@ -57,12 +58,13 @@ public class ChartDisplaying {
     public void showQuickSortOnChart(){}
     public void hideQuickSortOnChar(){};
 
-    private void showChartForSmallArraySize() {
+    public void showChartForSmallArraySize() {
+        Toast.makeText(activity, "SMALL", Toast.LENGTH_SHORT).show();
     }
-
-    private void showChartForAverageArraySize() {
+    public void showChartForAverageArraySize() {
+        Toast.makeText(activity, "AVERAGE", Toast.LENGTH_SHORT).show();
     }
-
-    private void showChartForBigArraySize() {
+    public void showChartForBigArraySize() {
+        Toast.makeText(activity, "BIG", Toast.LENGTH_SHORT).show();
     }
 }

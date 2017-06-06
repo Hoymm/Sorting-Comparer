@@ -1,6 +1,7 @@
 package com.hoymm.root.sortingcomparer;
 
 import android.app.Activity;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -43,15 +44,17 @@ public class ChartOptionsAndDisplaying {
     }
 
     private void setFunctinalityForLocalObjectsConnectedToXML() {
-        setArraysSortingWayCheckBoxAction();
+        setArraySortedWayCaseCheckBoxAction();
         setSortingTypeCheckBoxAction();
+        setArraySizeToDisplayRadioButtonAction();
     }
 
-    private void setArraysSortingWayCheckBoxAction() {
+    private void setArraySortedWayCaseCheckBoxAction() {
         setPositiveCaseCheckBoxAction();
         setNegativeCaseCheckBoxAction();
         setRandomCaseCheckBoxAction();
     }
+
     private void setPositiveCaseCheckBoxAction() {
         positiveSortedCase.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -87,12 +90,14 @@ public class ChartOptionsAndDisplaying {
         });
     }
 
+
     private void setSortingTypeCheckBoxAction() {
         setSelectionSortCheckBoxAction();
         setInsertionSortCheckBoxAction();
         setMergeSortCheckBoxAction();
         setQuickSortCheckBoxAction();
     }
+
     private void setSelectionSortCheckBoxAction() {
         selectionSort.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -134,6 +139,26 @@ public class ChartOptionsAndDisplaying {
                     chartDisplaying.showQuickSortOnChart();
                 else
                     chartDisplaying.hideQuickSortOnChar();
+            }
+        });
+    }
+
+
+    private void setArraySizeToDisplayRadioButtonAction(){
+        arraySizeRadioGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(v.getId()){
+                    case R.id.smallArrayRB_ID:
+                        chartDisplaying.showChartForSmallArraySize();
+                        break;
+                    case R.id.averageArrayRB_ID:
+                        chartDisplaying.showChartForAverageArraySize();
+                        break;
+                    case R.id.bigArrayRB_ID:
+                        chartDisplaying.showChartForBigArraySize();
+                        break;
+                }
             }
         });
     }

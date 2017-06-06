@@ -93,16 +93,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10^3"
+                    android:id="@+id/smallArrayRB_ID"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10^6"
+                    android:id="@+id/averageArrayRB_ID"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10^9"
+                    android:id="@+id/bigArrayRB_ID"
                     />
             </RadioGroup>
         </LinearLayout>
