@@ -7,39 +7,62 @@ import android.app.Activity;
  */
 
 public class ChartDisplaying {
+    private boolean positiveCase, randomCase, negativeCase;
+    private boolean selectionSort, insertionSort, mergeSort, quickSort;
+    private ArraySize arraySize;
+
     private Activity activity;
 
     public ChartDisplaying(Activity activity) {
         this.activity = activity;
     }
 
-    public void addPositiveCaseBars(){}
-    public void addNegativeCaseBars(){}
-    public void addRandomCaseBars(){}
-
-    public void addSelectionSortBars(){}
-    public void addInsertionSortBars(){}
-    public void addMergeSortBars(){}
-    public void addQuickSortBars(){}
-
     public void changeArraySize(ArraySize arraySize){
         switch (arraySize){
             case small:
-                showForSmallArraySize();
+                showChartForSmallArraySize();
             case average:
-                showForAverageArraySize();
+                showChartForAverageArraySize();
             case big:
-                showForBigArraySize();
+                showChartForBigArraySize();
         }
 
     }
 
-    private void showForSmallArraySize() {
+    public void showPositiveCaseOnChart(){
+
+    }
+    public void hidePositiveCaseOnChart(){
+
+    }
+    public void showNegativeCaseOnChart(){
+
+    }
+    public void hideNegativeCaseOnChart(){
+
+    }
+    public void showRandomCaseOnChart(){
+
+    }
+    public void hideRandomCaseOnChart(){
+
     }
 
-    private void showForAverageArraySize() {
+    public void showSelectionSortOnChart(){}
+    public void hideSelectionSortOnChar(){};
+    public void showInsertionSortOnChart(){}
+    public void hideInsertionSortOnChar(){};
+    public void showMergeSortOnChart(){}
+    public void hideMergeSortOnChar(){};
+    public void showQuickSortOnChart(){}
+    public void hideQuickSortOnChar(){};
+
+    private void showChartForSmallArraySize() {
     }
 
-    private void showForBigArraySize() {
+    private void showChartForAverageArraySize() {
+    }
+
+    private void showChartForBigArraySize() {
     }
 }
