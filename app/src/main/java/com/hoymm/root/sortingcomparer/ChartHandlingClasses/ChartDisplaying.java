@@ -24,11 +24,17 @@ import com.hoymm.root.sortingcomparer.R;
 
 import java.util.ArrayList;
 
+import static com.github.mikephil.charting.utils.ColorTemplate.rgb;
+
 /**
  * Created by root on 05.06.17.
  */
 
 public class ChartDisplaying implements OnChartValueSelectedListener {
+    public static final int[] BAR_COLORS = {
+            rgb("#2ecc71"), rgb("#f1c40f"), rgb("#e74c3c")
+    };
+
     private boolean positiveCase, randomCase, negativeCase;
     private boolean selectionSort, insertionSort, mergeSort, quickSort;
     private ArraySize arraySize;
@@ -107,7 +113,7 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
         mv.setChartView(barChart); // For bounds control
         barChart.setMarker(mv); // Set the marker to the chart
 
-        setData(12, 50);
+        setData();
 
         // setting data
         /*mSeekBarY.setProgress(50);
@@ -121,15 +127,19 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
     }
 
 
-    private void setData(int count, float range) {
+    private void setData() {
 
         float start = 1f;
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
-
-        yVals1.add(new BarEntry(0, 100));
-        yVals1.add(new BarEntry(1, 200));
-        yVals1.add(new BarEntry(2, 300));
+        ArryList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        // TODO
+        for (int j = 0; j < 4; ++j) {
+            for (int i = 0; i < 3; ++i) {
+                yVals1.add(new BarEntry(j*4+i, (int)(100+j*i*Math.random()*1000)));
+                if (i % 4 == 3)
+                    ++i;
+            }
+        }
 
         BarDataSet set1;
 
@@ -140,11 +150,11 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
             barChart.getData().notifyDataChanged();
             barChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "SORTOWANIAAAAAA");
+            set1 = new BarDataSet(yVals1, "Sorting Types");
 
             set1.setDrawIcons(false);
 
-            set1.setColors(ColorTemplate.MATERIAL_COLORS);
+            set1.setColors(BAR_COLORS);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
             dataSets.add(set1);

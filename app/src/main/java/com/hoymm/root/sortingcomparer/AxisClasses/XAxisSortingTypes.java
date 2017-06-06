@@ -21,6 +21,6 @@ public class XAxisSortingTypes implements IAxisValueFormatter {
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return "XXXXXX";
+        return  value + "XX";
     }
 }
