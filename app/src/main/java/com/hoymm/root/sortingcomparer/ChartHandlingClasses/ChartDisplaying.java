@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -17,14 +18,13 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.hoymm.root.sortingcomparer.AxisClasses.XAxisSortingTypes;
 import com.hoymm.root.sortingcomparer.AxisClasses.XYMarkerView;
 import com.hoymm.root.sortingcomparer.AxisClasses.YAxisSortingTime;
 import com.hoymm.root.sortingcomparer.R;
 
 import java.util.ArrayList;
-
-import static com.github.mikephil.charting.utils.ColorTemplate.rgb;
 
 /**
  * Created by root on 05.06.17.
@@ -36,7 +36,6 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
     private ArrayList<BarEntry> yVals1;
     private Context context;
     private BarChart barChart;
-    ArrayList<Integer> BAR_COLORS;
 
     private class OptionsConfiguration{
         boolean positiveCaseEnabled, randomCaseEnabled, negativeCaseEnabled;
@@ -76,9 +75,9 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
         configureChartApperanceAndBehavior();
     }
 
+    private int currentXOSPositionToAdd;
     public void configureChartApperanceAndBehavior() {
         // mChart.setDrawYLabels(false);
-
         IAxisValueFormatter xAxisFormatter = new XAxisSortingTypes(barChart);
 
         XAxis xAxis = barChart.getXAxis();
@@ -116,10 +115,21 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
         l.setFormSize(9f);
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
-        // l.setExtra(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
-        // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
+
+
+        int[] VORDIPLOM_COLORS = {
+                Color.GREEN, Color.YELLOW, Color.RED
+        };
+
+        ArrayList<Integer> BAR_COLORS = new ArrayList<>();
+        if (optionsConfiguration.positiveCaseEnabled)
+            BAR_COLORS.add(Color.GREEN);
+        if (optionsConfiguration.randomCaseEnabled)
+            BAR_COLORS.add(Color.YELLOW);
+        if (optionsConfiguration.negativeCaseEnabled)
+            BAR_COLORS.add(Color.RED);
+
+        l.setExtra(VORDIPLOM_COLORS, new String[] {"Optymistyczny", "Losowy", "Pesymistyczny" });
 
         XYMarkerView mv = new XYMarkerView(context, xAxisFormatter);
         mv.setChartView(barChart); // For bounds control
@@ -129,12 +139,24 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
 
         yVals1 = new ArrayList<>();
 
+        /*
         if (optionsConfiguration.positiveCaseEnabled)
             addPositiveCaseData();
         if (optionsConfiguration.randomCaseEnabled)
             addRandomCaseData();
         if (optionsConfiguration.negativeCaseEnabled)
             addNegativeCaseData();
+        */
+
+        currentXOSPositionToAdd = 0;
+        if (optionsConfiguration.selectionSortEnabled)
+            addSortData(SortingTypes.Selection);
+        if (optionsConfiguration.insertionSortEnabled)
+            addSortData(SortingTypes.Insertion);
+        if (optionsConfiguration.mergeSortEnabled)
+            addSortData(SortingTypes.Merge);
+        if (optionsConfiguration.quickSortEnabled)
+            addSortData(SortingTypes.Quick);
 
         BarDataSet set1;
 
@@ -144,16 +166,11 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
                 barChart.getData().getDataSetCount() > 0) {
             set1 = (BarDataSet) barChart.getData().getDataSetByIndex(0);
 
-            ArrayList<Integer> BAR_COLORS = new ArrayList<>();
-            BA_COLORS.add(Color.YELLOW);
-            BAR_COLORS.add(Color.RED);
-            set1.setColors(BAR_COLORS);
-
             set1.setValues(yVals1);
             barChart.getData().notifyDataChanged();
             barChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "Sorting Types");
+            set1 = new BarDataSet(yVals1, "");
 
             set1.setDrawIcons(false);
 
@@ -167,122 +184,41 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
 
             barChart.setData(data);
         }
+        set1.setColors(BAR_COLORS);
+        barChart.setDrawBarShadow(true);
+
         barChart.invalidate();
+        barChart.animateY(1400);
     }
 
-    private void addPositiveCaseData() {
+    private void addSortData(SortingTypes sortType) {
         switch (optionsConfiguration.arraySizeSelected){
             case small:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(0, ChartData.SmallArray.positive.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(4, ChartData.SmallArray.positive.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(8, ChartData.SmallArray.positive.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(12, ChartData.SmallArray.positive.quick));
+                if (optionsConfiguration.positiveCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.SmallArray.getPossitive(sortType)));
+                if (optionsConfiguration.randomCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.SmallArray.getRandom(sortType)));
+                if (optionsConfiguration.negativeCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.SmallArray.getNegative(sortType)));
                 break;
             case average:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(0, ChartData.AverageArray.positive.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(4, ChartData.AverageArray.positive.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(8, ChartData.AverageArray.positive.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(12, ChartData.AverageArray.positive.quick));
+                if (optionsConfiguration.positiveCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.AverageArray.getPossitive(sortType)));
+                if (optionsConfiguration.randomCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.AverageArray.getRandom(sortType)));
+                if (optionsConfiguration.negativeCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.AverageArray.getNegative(sortType)));
                 break;
             case big:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(0, ChartData.BigArray.positive.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(4, ChartData.BigArray.positive.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(8, ChartData.BigArray.positive.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(12, ChartData.BigArray.positive.quick));
+                if (optionsConfiguration.positiveCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.BigArray.getPossitive(sortType)));
+                if (optionsConfiguration.randomCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.BigArray.getRandom(sortType)));
+                if (optionsConfiguration.negativeCaseEnabled)
+                    yVals1.add(new BarEntry(currentXOSPositionToAdd++, ChartData.BigArray.getNegative(sortType)));
                 break;
         }
-    }
-
-    private void addRandomCaseData() {
-        switch (optionsConfiguration.arraySizeSelected){
-            case small:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(1, ChartData.SmallArray.random.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(5, ChartData.SmallArray.random.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(9, ChartData.SmallArray.random.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(13, ChartData.SmallArray.random.quick));
-                break;
-            case average:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(1, ChartData.AverageArray.random.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(5, ChartData.AverageArray.random.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(9, ChartData.AverageArray.random.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(13, ChartData.AverageArray.random.quick));
-                break;
-            case big:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(1, ChartData.BigArray.random.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(5, ChartData.BigArray.random.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(9, ChartData.BigArray.random.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(13, ChartData.BigArray.random.quick));
-                break;
-        }
-    }
-
-    private void addNegativeCaseData() {
-        switch (optionsConfiguration.arraySizeSelected){
-            case small:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(2, ChartData.SmallArray.negative.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(6, ChartData.SmallArray.negative.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(10, ChartData.SmallArray.negative.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(14, ChartData.SmallArray.negative.quick));
-                break;
-            case average:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(2, ChartData.AverageArray.negative.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(6, ChartData.AverageArray.negative.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(10, ChartData.AverageArray.negative.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(14, ChartData.AverageArray.negative.quick));
-                break;
-            case big:
-                if (optionsConfiguration.selectionSortEnabled)
-                    yVals1.add(new BarEntry(2, ChartData.BigArray.negative.selection));
-                if (optionsConfiguration.insertionSortEnabled)
-                    yVals1.add(new BarEntry(6, ChartData.BigArray.negative.insertion));
-                if (optionsConfiguration.mergeSortEnabled)
-                    yVals1.add(new BarEntry(10, ChartData.BigArray.negative.merge));
-                if (optionsConfiguration.quickSortEnabled)
-                    yVals1.add(new BarEntry(14, ChartData.BigArray.negative.quick));
-                break;
-        }
-
-        // setting data
-        /*mSeekBarY.setProgress(50);
-        mSeekBarX.setProgress(12);
-
-        mSeekBarY.setOnSeekBarChangeListener(this);
-        mSeekBarX.setOnSeekBarChangeListener(this);
-*/
-
-        // mChart.setDrawLegend(false);
+        ++currentXOSPositionToAdd;
     }
 
     @Override

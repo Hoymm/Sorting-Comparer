@@ -4,5 +4,5 @@
     <string name="dynamic_comparsion">Porównanie dynamiczne</string>
     <string name="history">Historia</string>
     <string name="application_created_by">Application created by</string>
-    <string name="comparison_based_on_the_formula_complexity_algorithm">Comparison based on the formula complexity algorithm</string>
+    <string name="comparison_based_on_the_formula_complexity_algorithm">Porównanie wzorem</string>
 </resources>

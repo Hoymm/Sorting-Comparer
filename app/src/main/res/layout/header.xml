@@ -4,10 +4,10 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="100dp"
     android:background="@color/appBackground"
     android:paddingBottom="10dp"
-    android:paddingTop="10dp"
+    android:paddingTop="5dp"
     android:paddingLeft="50dp"
     android:paddingRight="50dp"
     >
@@ -17,7 +17,7 @@
         android:layout_weight="1"
         android:gravity="left|center"
 
-        android:textSize="27sp"
+        android:textSize="24sp"
         android:textColor="#FFFFFF"
         android:text="SORTING ALGORITHMS COMPARER"
         />

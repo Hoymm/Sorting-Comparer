@@ -6,6 +6,7 @@ import android.support.annotation.IdRes;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.hoymm.root.sortingcomparer.R;
 

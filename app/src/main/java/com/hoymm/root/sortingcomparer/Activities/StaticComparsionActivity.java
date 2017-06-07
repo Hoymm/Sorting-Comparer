@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import com.hoymm.root.sortingcomparer.ChartHandlingClasses.ChartOptionsAndDisplaying;
 import com.hoymm.root.sortingcomparer.R;
 
-public class StaticComparsionActivity extends AppCompatActivity {
+public class StaticComparsionActivity extends Activity {
     ChartOptionsAndDisplaying chartOptionsAndDisplaying;
 
     @Override
