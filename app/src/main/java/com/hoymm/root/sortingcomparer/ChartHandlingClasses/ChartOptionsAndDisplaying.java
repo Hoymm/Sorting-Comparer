@@ -66,6 +66,7 @@ public class ChartOptionsAndDisplaying {
                     chartDisplaying.showPositiveCaseOnChart();
                 else
                     chartDisplaying.hidePositiveCaseOnChart();
+                chartDisplaying.refreshChart();
             }
         });
     }

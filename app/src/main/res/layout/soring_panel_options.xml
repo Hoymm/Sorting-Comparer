@@ -92,19 +92,20 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10^3"
+                    android:text="6.000"
                     android:id="@+id/smallArrayRB_ID"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10^6"
+                    android:text="60.000"
                     android:id="@+id/averageArrayRB_ID"
+                    android:checked="true"
                     />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10^9"
+                    android:text="130.000"
                     android:id="@+id/bigArrayRB_ID"
                     />
             </RadioGroup>

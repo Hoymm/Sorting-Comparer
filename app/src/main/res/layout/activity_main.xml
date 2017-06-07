@@ -32,18 +32,21 @@
             style="@style/ButtonsStyle"
             android:text="@string/dynamic_comparsion"
             android:id="@+id/dynamicComparsionButtonId"
+            android:enabled="false"
             />
 
         <Button
             style="@style/ButtonsStyle"
             android:text="@string/comparison_based_on_the_formula_complexity_algorithm"
             android:id="@+id/comparsionBasedOnFormulaButtonId"
+            android:enabled="false"
             />
 
         <Button
             style="@style/ButtonsStyle"
             android:text="@string/history"
             android:id="@+id/historyOfComparsionButtonId"
+            android:enabled="false"
             />
     </LinearLayout>
 
