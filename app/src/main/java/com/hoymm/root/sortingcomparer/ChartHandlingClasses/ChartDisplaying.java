@@ -2,6 +2,7 @@ package com.hoymm.root.sortingcomparer.ChartHandlingClasses;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -30,9 +31,12 @@ import static com.github.mikephil.charting.utils.ColorTemplate.rgb;
  */
 
 public class ChartDisplaying implements OnChartValueSelectedListener {
-    public static final int[] BAR_COLORS = {
-            rgb("#2ecc71"), rgb("#f1c40f"), rgb("#e74c3c")
-    };
+
+    private OptionsConfiguration optionsConfiguration;
+    private ArrayList<BarEntry> yVals1;
+    private Context context;
+    private BarChart barChart;
+    ArrayList<Integer> BAR_COLORS;
 
     private class OptionsConfiguration{
         boolean positiveCaseEnabled, randomCaseEnabled, negativeCaseEnabled;
@@ -45,14 +49,6 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
             arraySizeSelected = ArraySize.average;
         }
     }
-
-    private OptionsConfiguration optionsConfiguration;
-    private ArrayList<BarEntry> yVals1;
-
-    private Context context;
-
-    private BarChart barChart;
-
     private enum ArraySize {
         small, average, big;
     }
@@ -77,10 +73,10 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
 
         barChart.setDrawGridBackground(false);
         optionsConfiguration = new OptionsConfiguration();
-        configureChartApperanceAndBehavior(context);
+        configureChartApperanceAndBehavior();
     }
 
-    private void configureChartApperanceAndBehavior(Context context) {
+    public void configureChartApperanceAndBehavior() {
         // mChart.setDrawYLabels(false);
 
         IAxisValueFormatter xAxisFormatter = new XAxisSortingTypes(barChart);
@@ -129,21 +125,7 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
         mv.setChartView(barChart); // For bounds control
         barChart.setMarker(mv); // Set the marker to the chart
 
-        refreshChart();
 
-        // setting data
-        /*mSeekBarY.setProgress(50);
-        mSeekBarX.setProgress(12);
-
-        mSeekBarY.setOnSeekBarChangeListener(this);
-        mSeekBarX.setOnSeekBarChangeListener(this);
-*/
-
-        // mChart.setDrawLegend(false);
-    }
-
-
-    public void refreshChart() {
 
         yVals1 = new ArrayList<>();
 
@@ -156,9 +138,17 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
 
         BarDataSet set1;
 
+
+
         if (barChart.getData() != null &&
                 barChart.getData().getDataSetCount() > 0) {
             set1 = (BarDataSet) barChart.getData().getDataSetByIndex(0);
+
+            ArrayList<Integer> BAR_COLORS = new ArrayList<>();
+            BA_COLORS.add(Color.YELLOW);
+            BAR_COLORS.add(Color.RED);
+            set1.setColors(BAR_COLORS);
+
             set1.setValues(yVals1);
             barChart.getData().notifyDataChanged();
             barChart.notifyDataSetChanged();
@@ -166,8 +156,6 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
             set1 = new BarDataSet(yVals1, "Sorting Types");
 
             set1.setDrawIcons(false);
-
-            set1.setColors(BAR_COLORS);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
             dataSets.add(set1);
@@ -285,6 +273,16 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
                     yVals1.add(new BarEntry(14, ChartData.BigArray.negative.quick));
                 break;
         }
+
+        // setting data
+        /*mSeekBarY.setProgress(50);
+        mSeekBarX.setProgress(12);
+
+        mSeekBarY.setOnSeekBarChangeListener(this);
+        mSeekBarX.setOnSeekBarChangeListener(this);
+*/
+
+        // mChart.setDrawLegend(false);
     }
 
     @Override
@@ -299,72 +297,72 @@ public class ChartDisplaying implements OnChartValueSelectedListener {
 
     public void showPositiveCaseOnChart(){
         optionsConfiguration.positiveCaseEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hidePositiveCaseOnChart(){
         optionsConfiguration.positiveCaseEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showNegativeCaseOnChart(){
         optionsConfiguration.negativeCaseEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hideNegativeCaseOnChart(){
         optionsConfiguration.negativeCaseEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showRandomCaseOnChart(){
         optionsConfiguration.randomCaseEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hideRandomCaseOnChart(){
         optionsConfiguration.randomCaseEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
 
     public void showSelectionSortOnChart(){
         optionsConfiguration.selectionSortEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hideSelectionSortOnChar(){
         optionsConfiguration.selectionSortEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showInsertionSortOnChart(){
         optionsConfiguration.insertionSortEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hideInsertionSortOnChar(){
         optionsConfiguration.insertionSortEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showMergeSortOnChart(){
         optionsConfiguration.mergeSortEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hideMergeSortOnChar(){
         optionsConfiguration.mergeSortEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showQuickSortOnChart(){
         optionsConfiguration.quickSortEnabled = true;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void hideQuickSortOnChar(){
         optionsConfiguration.quickSortEnabled = false;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
 
     public void showChartForSmallArraySize() {
         optionsConfiguration.arraySizeSelected = ArraySize.small;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showChartForAverageArraySize() {
         optionsConfiguration.arraySizeSelected = ArraySize.average;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
     public void showChartForBigArraySize() {
         optionsConfiguration.arraySizeSelected = ArraySize.big;
-        refreshChart();
+        configureChartApperanceAndBehavior();
     }
 }

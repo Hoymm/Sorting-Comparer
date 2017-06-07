@@ -14,24 +14,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Case:"
+                android:text="Przypadek:"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Positive"
+                android:text="Optymistyczny"
                 android:id="@+id/positiveCaseCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Random"
+                android:text="Losowy"
                 android:id="@+id/randomCaseCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Negative"
+                android:text="Pesymistyczny"
                 android:id="@+id/negativeCaseCB_ID"
                 />
         </LinearLayout>
@@ -45,30 +45,30 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sorting Type:"
+                android:text="Typy sortowań:"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selection"
+                android:text="Wybór"
                 android:id="@+id/selectionSortCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Insertion"
+                android:text="Wstawianie"
                 android:id="@+id/insertionSortCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Merge"
+                android:text="Scalanie"
                 android:id="@+id/mergeSortCB_ID"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quick"
+                android:text="Szybkie"
                 android:id="@+id/quickSortCB_ID"
                 />
         </LinearLayout>
@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Array size:"
+                android:text="Rozmiar tablicy:"
                 />
             <RadioGroup
                 android:layout_width="wrap_content"
